@@ -57,6 +57,12 @@ class War {
   addSaxon(oneSaxon) {
     this.saxonArmy.push(oneSaxon);
   }
+
+  //   selectRandom(person) {
+  //     let randomPerson = Math.floor(Math.random() * person.length);
+  //     return randomPerson;
+  //   }
+
   vikingAttack() {
     let randomSaxon = Math.floor(Math.random() * this.saxonArmy.length);
     let randomViking = Math.floor(Math.random() * this.vikingArmy.length);
@@ -67,6 +73,7 @@ class War {
 
     if (this.saxonArmy[randomSaxon].health <= 0) {
       this.saxonArmy.splice(randomSaxon, 1);
+      return "A Saxon has died in combat";
     } else {
       return hitViking;
     }
@@ -81,11 +88,18 @@ class War {
 
     if (this.vikingArmy[randomViking].health <= 0) {
       this.vikingArmy.splice(randomViking, 1);
+      return "A Viking has died in combat";
     } else {
       return hitSaxon;
     }
   }
-  showStatus() {}
+  showStatus() {
+    return !this.saxonArmy.length
+      ? "Vikings have won the war of the century!"
+      : !this.vikingArmy.length
+      ? "Saxons have fought for their lives and survived another day..."
+      : "Vikings and Saxons are still in the thick of battle.";
+  }
 }
 
 addViking();
@@ -94,10 +108,11 @@ vikingAttack();
 saxonAttack();
 showStatus();
 
-// A Saxon (chosen at random) has their receiveDamage() method called
-// with the damage equal to the strength of a Viking (also chosen at random).
-// This should only perform a single attack and the Saxon doesn't get to attack back.
-
-// should make a Saxon receiveDamage() equal to the strength of a Viking
-// should remove dead saxons from the army
-// should return result of calling receiveDamage() of a Saxon with the strength of a Viking
+// if (!this.saxonArmy.length) {
+//   return "Vikings have won the war of the century!";
+// }
+// if (!this.vikingArmy.length) {
+//   return "Saxons have fought for their lives and survived another day...";
+// } else {
+//   return "Vikings and Saxons are still in the thick of battle.";
+// }
